@@ -16,6 +16,13 @@ designed for future integration into a **modular security drone**.
 | F1-Score | 0.80 | **0.88** |
 | FPS (CPU i5) | 17.1 | 17.6 |
 
+## Requirements
+- Python 3.10+
+- Install:
+```bash
+pip install -r requirements.txt
+
+
 ## Usage (no hardware, video demo)
 
 - Download / place a small test video into docs/samples/ (e.g., fire_test.mp4).
