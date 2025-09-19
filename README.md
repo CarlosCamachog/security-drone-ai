@@ -16,18 +16,56 @@ designed for future integration into a **modular security drone**.
 | F1-Score | 0.80 | **0.88** |
 | FPS (CPU i5) | 17.1 | 17.6 |
 
-## Repository Structure
-- `src/` - Python scripts for training, evaluation, and real-time detection.
-- `models/` - Trained models (.h5, .onnx).
-- `docs/` - Project documentation, IEEE certificate, research paper.
-- `datasets/` - Dataset links and scripts to download data.
+## Usage (no hardware, video demo)
 
-## Certification
+- Download / place a small test video into docs/samples/ (e.g., fire_test.mp4).
+
+- Place or export an ONNX model into models/ (e.g., fire.onnx).
+
+- Run:
+
+- python src/infer.py --model models/fire.onnx --video docs/samples/fire_test.mp4 --save docs/results/demo.mp4 --threshold 0.5
+
+
+- src/infer.py provides a minimal ONNXRuntime inference loop and saves an annotated video to docs/results/.
+
+
+
+## Repository Structure
+security-drone-ai/
+├─ src/            # Inference/training scripts
+├─ models/         # Exported models (.onnx / .tflite) - large files via links or LFS
+├─ hardware/       # Drone schematics / BOM (future)
+├─ docs/           # Paper, certificate, images, results
+│  ├─ 2025_MHTC_IA_Humo.pdf
+│  ├─ results/
+│  └─ samples/
+└─ datasets/       # Links or download scripts (do not commit raw datasets)
+
+
+## Certification & Paper
 Presented at the **IEEE Mexican Humanitarian Technology Conference 2025**.
 
 ![Certificate](docs/IEEE_MHTC2025_Certificate.png)
 
 [**View Full Paper (PDF)**](docs/2025_MHTC_IA_Humo.pdf)
+
+## Limitations
+
+- False negatives can occur with low light or heavy smoke coverage.
+
+- Current repo focuses on software/inference; embedded hardware integration is WIP.
+
+- Performance varies by CPU/GPU; embedded benchmarks pending.
+
+- Dataset scope still limited; needs more smoke and complex scenes.
+
+## Roadmap
+- v0.1: Reproducible inference + basic benchmark on CPU (this repo).
+
+- v0.2: Export to ONNX/TFLite + INT8 quantization.
+
+- v0.3: ROS node + MQTT alerts + embedded (Raspberry Pi / Jetson).
 
 ## Future Work
 - Optimize models for embedded devices like Raspberry Pi or Jetson Nano.
